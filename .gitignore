@@ -1,3 +1,3 @@
-node_modules
-distribution
-.parcel-cache
+**/dist
+**/node_modules
+.DS_Store

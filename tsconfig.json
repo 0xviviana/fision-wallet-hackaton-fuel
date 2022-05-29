@@ -1,11 +1,16 @@
 {
-  "extends": "@tsconfig/svelte/tsconfig.json",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "types": ["vite/client"],
+    "noEmit": true,
+    "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
@@ -19,5 +24,13 @@
     "allowJs": true,
     "checkJs": true
   },
-  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte",
+    "src/entries/popup/main.tsx",
+    "src/entries/options/main.tsx",
+    "src/entries/contentScript/primary/main.tsx"
+  ]
 }

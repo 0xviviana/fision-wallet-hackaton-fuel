@@ -3,7 +3,7 @@ import pkg from "../package.json";
 const sharedManifest = {
   content_scripts: [
     {
-      js: ["src/entries/contentScript/primary/main.ts"],
+      js: ["src/entries/contentScript/primary/main.tsx"],
       matches: ["*://*/*"],
     },
   ],

@@ -5,6 +5,9 @@
   import AuthView from "~/lib/views/popup/AuthView.svelte";
 
   const memoryHistory = createHistory(createMemorySource());
+
+  /// @ts-ignore
+  window.fuelProvider = "Hello World";
 </script>
 
 <main class="w-96 h-128 bg-secondary-1 border border-secondary-2 text-white">

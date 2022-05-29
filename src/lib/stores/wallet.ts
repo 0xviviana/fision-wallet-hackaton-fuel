@@ -1,6 +1,5 @@
 import { writable } from "svelte/store";
-import { Wallet, Provider } from 'fuels'
-
+import { Wallet, Provider, Contract } from 'fuels'
 
 export const wallet = writable(undefined)
 
@@ -19,3 +18,5 @@ var decrypted = CryptoJS.AES.decrypt(encrypted, "Secret Passphrase");
 //4d657373616765
 
 */
+
+

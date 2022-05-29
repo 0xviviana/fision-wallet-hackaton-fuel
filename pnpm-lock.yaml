@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@samrum/vite-plugin-web-extension': ^1.0.0
+  '@types/crypto-js': ^4.1.1
   '@types/download': ^8.0.1
   '@types/webextension-polyfill': ^0.8.3
   autoprefixer: ^10.4.7
@@ -12,6 +13,7 @@ specifiers:
   fuels: ^0.6.0
   postcss: ^8.4.14
   safe-compare: ^1.1.4
+  solid-app-router: ^0.3.3
   solid-js: ^1.3.13
   tailwindcss: ^3.0.24
   tslib: ^2.3.1
@@ -24,11 +26,13 @@ specifiers:
 dependencies:
   crypto-js: 4.1.1
   fuels: 0.6.0
+  solid-app-router: 0.3.3_solid-js@1.4.3
   solid-js: 1.4.3
   webextension-polyfill: 0.9.0
 
 devDependencies:
   '@samrum/vite-plugin-web-extension': 1.0.2
+  '@types/crypto-js': 4.1.1
   '@types/download': 8.0.1
   '@types/webextension-polyfill': 0.8.3
   autoprefixer: 10.4.7_postcss@8.4.14
@@ -859,6 +863,10 @@ packages:
     dependencies:
       '@types/filesystem': 0.0.32
       '@types/har-format': 1.2.8
+    dev: true
+
+  /@types/crypto-js/4.1.1:
+    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
     dev: true
 
   /@types/decompress/4.2.4:
@@ -4630,6 +4638,14 @@ packages:
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
+
+  /solid-app-router/0.3.3_solid-js@1.4.3:
+    resolution: {integrity: sha512-JEn0gi6q8Pq9M2Ml3CLeNzenxuBrOrQg4aQyeIZTNjOAeEil/9YiaAJk+US78sIdVcqflTneN5KZgJMIGJ0rFQ==}
+    peerDependencies:
+      solid-js: ^1.3.5
+    dependencies:
+      solid-js: 1.4.3
+    dev: false
 
   /solid-js/1.4.3:
     resolution: {integrity: sha512-3uh2cbT4ICronIasLAxycF6SVgvqcfwFCDCzlEA9CEahn1qQg8Rw8aRGiI4O51PrHcN5aPRO9knYYRCs0PgzcQ==}

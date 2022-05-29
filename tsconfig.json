@@ -31,6 +31,8 @@
     "src/**/*.svelte",
     "src/entries/popup/main.tsx",
     "src/entries/options/main.tsx",
-    "src/entries/contentScript/primary/main.tsx"
+    "src/entries/contentScript/primary/main.tsx",
+    "src/entries/popup/App.tsx",
+    "src/lib/views/popup/AuthView.tsx"
   ]
 }

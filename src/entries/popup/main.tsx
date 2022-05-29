@@ -1,12 +1,13 @@
-import "~/lib/styles/global.css";
-
 /* @refresh reload */
 import { render } from "solid-js/web";
+import "~/lib/styles/global.css";
+
+import App from "./App";
 
 render(
   () => (
     <>
-      <h1>Hello World</h1>
+      <App />
     </>
   ),
   document.getElementById("app") as HTMLElement

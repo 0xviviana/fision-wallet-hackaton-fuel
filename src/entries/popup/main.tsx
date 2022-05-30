@@ -1,14 +1,18 @@
-/* @refresh reload */
-import { render } from "solid-js/web";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import App from "./App";
+import { store } from "~/lib/stores";
+
 import "~/lib/styles/global.css";
 
-import App from "./App";
-
-render(
-  () => (
-    <>
-      <App />
-    </>
-  ),
-  document.getElementById("app") as HTMLElement
-);
+store.ready().then(() => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>,
+    document.getElementById("app") as HTMLElement
+  );
+});

@@ -1,23 +1,31 @@
 import AuthView from "~/lib/views/popup/AuthView";
 import wallet from "~/lib/stores/wallet";
-import { createSignal, onMount, Show } from "solid-js";
+
+import { RootState } from "~/lib/stores/index";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function App() {
+  const count = useSelector((state: RootState) => {
+    console.log(state);
+    return state;
+  });
+
   return (
-    <main class="w-96 h-128 bg-secondary-1 border border-secondary-2 text-white">
-      <div class="w-full bg-secondary-2 py-2 px-2 rounded-b-md shadow-sm flex justify-between items-center">
+    <main className="w-96 h-128 bg-secondary-1 border border-secondary-2 text-white">
+      <div className="w-full bg-secondary-2 py-2 px-2 rounded-b-md shadow-sm flex justify-between items-center">
         <h1>Fision</h1>
-        <button class=" border border-blue-600 px-2 py-1 rounded-md">
+        <button className=" border border-blue-600 px-2 py-1 rounded-md">
           Networks
         </button>
+        {count}
       </div>
-      <div class="p-1">
-        <Show
+      <div className="p-1">
+        {/* <Show
           when={wallet.isInitialized && !wallet.isLocked}
           fallback={AuthView}
         >
           <div>Is registered</div>
-        </Show>
+        </Show> */}
       </div>
 
       {/* <div class="flex items-center justify-between border-y py-2 px-2 shadow-md bg-secondary-2 border-blue-500 w-full">

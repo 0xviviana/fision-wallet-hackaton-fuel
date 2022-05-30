@@ -2,8 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import webExtension from "@samrum/vite-plugin-web-extension";
 import path from "path";
 import { getManifest } from "./src/manifest";
-
-import solidPlugin from 'vite-plugin-solid';
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -11,7 +10,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
-      solidPlugin(),
+      react(),
       webExtension({
         manifest: getManifest(Number(env.MANIFEST_VERSION)),
       }),

@@ -6,6 +6,7 @@ import {
   createMemo,
   Show,
 } from "solid-js";
+import Browser from "webextension-polyfill";
 import en_wordlist from "~/lib/helpers/en_wordlist";
 import { getMnemonicPhrase } from "~/lib/helpers/wordlistHelper";
 import wallet from "~/lib/stores/wallet";
@@ -172,6 +173,19 @@ export default function AuthView() {
             </div>
             <button onClick={unlockWallet} class="w-full">
               Unlock
+            </button>
+            <button
+              onClick={() => {
+                Browser.runtime.sendMessage({
+                  callFunc: () => {
+                    console.log("Hello world");
+                  },
+                  test: "Hello world",
+                });
+                // Browser.runtime.sendMessage();
+              }}
+            >
+              D
             </button>
             <button onClick={() => wallet.clear()}>Clear</button>
           </div>

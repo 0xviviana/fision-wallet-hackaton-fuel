@@ -3,6 +3,7 @@ import { createStore } from "solid-js/store";
 import { Wallet } from 'fuels'
 
 import CryptoJS from 'crypto-js'
+import wallet from '~/lib/stores/wallet';
 
 
 export const STORAGE_KEY = "FISION_WALLET"
@@ -18,33 +19,32 @@ export interface WalletStorage {
     secret: string
 }
 
-const createWalletManager = (config?: {
-    rootPath: `m/44'/60'/0'/0`
-}) => {
+const createWalletManager = () => {
+    const rootPath = `m/44'/60'/0'/0`
+
     const [state, setState] = createStore({
         isLocked: true,
         isInitialized: false,
-        secret: ""
+        wallet: undefined,
+        selectedWallet: 0
     });
 
     function lock() {
         setState("isLocked", true)
     }
 
-    /*
-    var decr = CryptoJS.AES.decrypt(data, key);
-decr = decr.toString(CryptoJS.enc.Utf8);
-    */
 
     async function unlock(passphrase: string) {
-        const data = await Browser.storage?.local?.get(STORAGE_KEY)
+        const storageData = await Browser.storage?.local?.get(STORAGE_KEY)
 
+        let data: WalletStorage = JSON.parse(CryptoJS.AES.decrypt(storageData[STORAGE_KEY], passphrase).toString(CryptoJS.enc.Utf8));
 
+        if (data['secret'] === undefined) {
+            throw new Error("Mnemonic Phrase invalid")
+        }
 
-        let decryptedData = CryptoJS.AES.decrypt(data[STORAGE_KEY], passphrase);
-        let clearData = decryptedData.toString(CryptoJS.enc.Utf8);
-
-        console.log(clearData)
+        setState("wallet", Wallet.fromMnemonic(data.secret, rootPath))
+        setState("isLocked", false)
     }
 
     function accounts() { }

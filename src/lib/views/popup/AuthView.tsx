@@ -11,6 +11,8 @@ import { getMnemonicPhrase } from "~/lib/helpers/wordlistHelper";
 import wallet from "~/lib/stores/wallet";
 import MnemonicShow from "../../components/primitives/MnemonicShow";
 import PasswordInput from "../../components/primitives/PasswordInput";
+import { sendMessage } from "webext-bridge";
+import { EMessages } from "../../stores/messages";
 
 function NewWalletPage() {
   const [pass1, setPass1] = createSignal({
@@ -50,7 +52,7 @@ function NewWalletPage() {
   });
 
   async function createNewWallet() {
-    wallet.initializeWallet({
+    await sendMessage(EMessages.INITIALIZE_WALLET, {
       secret: _mp(),
       passphrase: pass1().value,
     });
@@ -115,7 +117,7 @@ export default function AuthView() {
 
   async function unlockWallet() {
     try {
-      await wallet.unlock(passphrase().value);
+      await wallet.unlockWallet(passphrase().value);
     } catch (error) {
       console.error(error);
     }
@@ -173,7 +175,7 @@ export default function AuthView() {
             <button onClick={unlockWallet} class="w-full">
               Unlock
             </button>
-            <button onClick={() => wallet.clear()}>Clear</button>
+            <button onClick={wallet.clearWallet}>Clear</button>
           </div>
         </Match>
       </Switch>

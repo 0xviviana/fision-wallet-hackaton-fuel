@@ -33,6 +33,8 @@
     "src/entries/options/main.tsx",
     "src/entries/contentScript/primary/main.tsx",
     "src/entries/popup/App.tsx",
-    "src/lib/views/popup/AuthView.tsx"
+    "src/lib/views/popup/AuthView.tsx",
+    "src/lib/views/popup/AccountView.tsx",
+    "src/lib/views/popup/ReceiveView.tsx"
   ]
 }

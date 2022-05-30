@@ -2,7 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import webExtension from "@samrum/vite-plugin-web-extension";
 import path from "path";
 import { getManifest } from "./src/manifest";
-import react from "@vitejs/plugin-react";
+import solidPlugin from 'vite-plugin-solid';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -10,19 +10,19 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
-      react(),
+      solidPlugin(),
       webExtension({
         manifest: getManifest(Number(env.MANIFEST_VERSION)),
       }),
     ],
-    build: {
-      target: 'esnext',
-      polyfillDynamicImport: false,
-    },
     resolve: {
       alias: {
         "~": path.resolve(__dirname, "./src"),
       },
+    },
+    build: {
+      target: 'esnext',
+      polyfillDynamicImport: false,
     },
   };
 });

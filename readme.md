@@ -1,6 +1,6 @@
 # web-extension
 
-This template should help get you started developing a svelte web extension in Vite.
+This template should help get you started developing a vanilla web extension in Vite.
 
 ## Usage Notes
 

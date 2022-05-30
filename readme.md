@@ -13,8 +13,8 @@ At this moment just some basics features are implemented:
 
 A lot more had to be implemented but the time wasn't enough :(
 
-The wallet data is stored inside `entities/background/main.ts`
-The stores from popup directory exists just for reactivity purposes
+The wallet data is stored inside `entities/background/main.ts`.
+The stores from popup directory exists just for reactivity purposes.
 The wallet is recreated from mnemonic phrase inside the popup because the serialization doesn't works correctly.
 Technically every information from the wallet is public to the user or any software that exists on the user machine. You can lock the wallet and the stores will be cleared.
 

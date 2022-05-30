@@ -98,6 +98,21 @@ const AccountView: Component = () => {
           </button>
         </div>
       </div>
+
+      <button
+        onClick={() => {
+          wallet.lockWallet();
+        }}
+      >
+        Lock Wallet
+      </button>
+      <button
+        onClick={() => {
+          wallet.clearWallet();
+        }}
+      >
+        Reset Wallet
+      </button>
     </>
   );
 };

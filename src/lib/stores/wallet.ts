@@ -54,7 +54,18 @@ const walletManager = (() => {
         return status
     }
 
-    async function initializeWallet() { }
+    async function initializeWallet(secret: string, passphrase: string) {
+        const { status } = await sendMessage(EMessages.INITIALIZE_WALLET, {
+            secret: secret,
+            passphrase: passphrase,
+        });
+
+        await fetchInitializedStatus()
+
+        return {
+            status
+        }
+    }
 
     async function lockWallet() {
         await sendMessage(EMessages.LOCK_WALLET, {})

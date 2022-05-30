@@ -52,12 +52,7 @@ function NewWalletPage() {
   });
 
   async function createNewWallet() {
-    await sendMessage(EMessages.INITIALIZE_WALLET, {
-      secret: _mp(),
-      passphrase: pass1().value,
-    });
-
-    await wallet.fetchInitializedStatus();
+    await wallet.initializeWallet(_mp(), pass1().value);
   }
 
   return (
@@ -94,11 +89,84 @@ function NewWalletPage() {
   );
 }
 function LoadWalletPage() {
+  const [pass1, setPass1] = createSignal({
+    value: "",
+    error: "",
+  });
+
+  const [pass2, setPass2] = createSignal({
+    value: "",
+    error: "",
+  });
+
+  const [_mp, _setMp] = createSignal("");
+
+  onMount(() => {
+    _setMp(getMnemonicPhrase(en_wordlist));
+  });
+
+  const samePasswords = createMemo(() => {
+    if (pass1().value === pass2().value) {
+      return true;
+    }
+
+    return false;
+  });
+
+  const canSubmit = createMemo(() => {
+    if (pass1().value.length <= 0 || pass2().value.length <= 0) {
+      return false;
+    }
+
+    if (pass1().error.length > 0 || pass2().error.length > 0) {
+      return false;
+    }
+
+    return samePasswords();
+  });
+
+  async function createNewWallet() {
+    await wallet.initializeWallet(_mp(), pass1().value);
+  }
+
   return (
     <>
-      <div>Seed phrase</div>
-      <input></input>
-      <button>Login</button>
+      <div class="flex flex-col gap-2">
+        <div>Import New Wallet</div>
+        <input
+          onChange={(ev) => {
+            ///@ts-ignore
+            _setMp(ev.target.value);
+          }}
+          onInput={(ev) => {
+            ///@ts-ignore
+            _setMp(ev.target.value);
+          }}
+        ></input>
+
+        <div class=" inline-flex flex-col">
+          <label for="pass_1">Password:</label>
+          <PasswordInput setData={setPass1} getData={pass1} id="pass_1" />
+        </div>
+
+        <div class=" inline-flex flex-col">
+          <label for="pass_2">Confirm Password:</label>
+          <PasswordInput setData={setPass2} getData={pass2} id="pass_2" />
+        </div>
+
+        <Show when={!samePasswords()}>
+          <div>Passwords aren't the same</div>
+        </Show>
+
+        <button
+          classList={{
+            "pointer-events-none opacity-50": !canSubmit(),
+          }}
+          onClick={createNewWallet}
+        >
+          Import New Wallet
+        </button>
+      </div>
     </>
   );
 }

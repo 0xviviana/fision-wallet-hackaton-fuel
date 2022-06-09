@@ -1,3 +1,5 @@
+# This repo is closed, the main development is executed at https://github.com/ManhattanInitiative/fision-wallet 
+---
 # fision wallet extension for fuel.network hackaton 2022
 
 This wallet was made for the fuel.network hackaton. The intention was that the wallet would manage multiple accounts, send/receive native assets, inject a provider into a web page for dapps to work and to support multiple networks.
